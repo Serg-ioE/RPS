@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <section class="game">
+      <!-- title -->
+      <div class="title">
+        Rock Paper Scissors
+      </div>
+      <!-- scoreboard Display for User and Ai -->
+      <div class="score">
+        <div class="playerscore">
+          <h2>Player</h2>
+          <img id="playerChoiceImg" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2016_11/1016196/rock-paper-scissors-today-tease-160317.jpg" alt="Rock Paper Scissors">
+          <p class="p-count count"> 0 </p>
+        </div>
+        <div class="computerscore">
+          <h2>Computer</h2>
+          <img id="computerChoiceImg" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2016_11/1016196/rock-paper-scissors-today-tease-160317.jpg" alt="Rock Paper Scissors">
+          <p class="p-count count"> 0 </p>
+        </div>
+      </div>
+<!-- Instructions -->
+      <div class="move">Choose your move</div>
+<!-- player selection buttons -->
+      <div class="options">
+        <button class="rock" onclick="playerRockChooser()">Rock</button>
+        <button class="paper" onclick="computerChooser()">Paper</button>
+        <button class="scissors" onclick="computerChooser()">Scissors</button>
+      </div>
+<!-- Show result of round -->
+      <div class="result">
+        <img id="resultImage" src="https://info.aiim.org/hubfs/blog-files/Document%20Management%20vs.%20Records%20Management%20What%E2%80%99s%20the%20Difference.jpg"
+      </div>
+
+      <button class="reset"> Reset </button>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
