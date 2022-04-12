@@ -1,12 +1,13 @@
-#computerChoiceImg {
-  height: 200px;
-  width: 300px;
+body {
+    background-color:grey;
 }
-#playerChoiceImg {
-  height: 200px;
-  width: 300px;
+
+.winner {
+    width : 150px;
+    height : 150px;
 }
-#resultImage {
-  height: 200px;
-  width: 300px;
+div {
+  font-weight: bolder;
+  color: white;
+  font-family: sans-serif;
 }

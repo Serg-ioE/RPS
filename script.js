@@ -1,34 +1,83 @@
-// complete game function
-const game = () => {
-  let playerScore = 0;
-  let computerscore = 0;
-// fuction to grab user input and run function to evaluate choices
-  const playGame = () => {
-    const rockBtn = document.querySelector('.rock');
-    const paperBtn = document.querySelector('.paper');
-    const scissorBtn = document.querySelector('.scissor');
-  }
+// Starting Variables
+//Storing HTMl elements a variable for easy access
+let pScoreboard = document.querySelector('.p-count');
+let cScoreboard = document.querySelector('.c-count');
+let roundResult = document.querySelector('.result');
+let computerChoiceSpan = document.querySelector('.computerChoice');
+let userChoiceSpan = document.querySelector('.userChoice');
+let winnerPannel = document.querySelector('.winner');
+
+//setting score variables for player & computer to track score
+let playerScore = 0;
+let computerScore = 0;
+//intializing Global variables to store user and computer selections
+let computerChoice;
+let playerChoice;
+const gameOptions = ["rock", "paper", "scissor"];
+//function to randomly generate a choice for the computer, uses a random number 1-3 to store selections)
+
+function computerChoose() {
+  const randomNum = Math.floor(Math.random() * 3);
+    computerChoice = gameOptions[randomNum];
+    computerChoiceSpan.innerHTML = computerChoice;
 }
-function computerChooser() {
-  var computerChoice = Math.floor(Math.random() * 3)
-  if (computerChoice === 0){
-    document.getElementById("computerChoiceImg").src ="https://c.tenor.com/8o1DsZcDDE8AAAAd/watch-for-rocks-the-rock.gif";
-  } else if (computerChoice === 1){
-    document.getElementById("computerChoiceImg").src ="https://www.relyco.com/wp-content/uploads/2019/10/Syn_Tridura_1_ALT.jpg";
-  } else if (computerChoice === 2){
-    document.getElementById("computerChoiceImg").src ="https://cdn.thewirecutter.com/wp-content/uploads/2017/10/scissors-kitchen-shears-2x1-fullres2006.jpg?auto=webp&quality=75&crop=2:1&width=1024";
-  }
-  console.log(computerChoice);
+
+function userChoice(choice) {
+    playerChoice = gameOptions[choice];
+    userChoiceSpan.innerHTML = playerChoice;
+    computerChoose();
+    game(playerChoice,computerChoice);
 }
-function playerRockChooser() {
-  var playerChoice = 1;
-  document.getElementById("playerChoiceImg").src ="https://c.tenor.com/8o1DsZcDDE8AAAAd/watch-for-rocks-the-rock.gif";
-  computerChooser();
-  if (computerChoice === playerChoice){
-    document.getElementById("resultImage").src ="https://www.collinsdictionary.com/images/full/tie_171498722_1000.jpg";
-  } else if (computerChoice === 1){
-    document.getElementById("resultImage").src ="https://c.tenor.com/v9dbFyoOGwkAAAAi/fortnite-dance-take-the-l.gif";
-  } else if (computerChoice === 2){
-    document.getElementById("resultImage").src ="https://c.tenor.com/epNMHGvRyHcAAAAd/gigachad-chad.gif";
-  }
+
+function game(playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+        won("tie");
+        return;  // nothing more to check when it's a tie
+    }
+
+    if (playerChoice == "rock" && computerChoice == "paper")
+        won("computer");
+    else if (playerChoice == "rock" && computerChoice == "scissor")
+        won("player");
+    else if (playerChoice == "paper" && computerChoice == "rock")
+        won("player");
+    else if (playerChoice == "paper" && computerChoice == "scissor")
+        won("computer");
+    else if (playerChoice == "scissor" && computerChoice == "rock")
+        won("computer");
+    else if (playerChoice == "scissor" && computerChoice == "paper")
+        won("player");
+    else
+        alert("Wrong inputs")
+}
+
+function won(winner) {
+    if (winner == "player") {
+        roundResult.innerHTML = "Your insane";
+        playerScore = playerScore + 1;
+        pScoreboard.innerHTML = playerScore;
+        winnerPannel.src = "https://c.tenor.com/UyfzcmWe2AUAAAAC/tenor.gif";
+    }
+    else if (winner == "computer") {
+        roundResult.innerHTML = "Get better";
+        computerScore = computerScore + 1;
+        cScoreboard.innerHTML = computerScore;
+        winnerPannel.src = "https://c.tenor.com/otMBEMDbv94AAAAC/john-travolta-where-am-i.gif";
+    }
+    else {
+        roundResult.innerHTML = "Now that's a tie";
+        winnerPannel.src = "https://c.tenor.com/wyfhYqF1tJIAAAAC/mark-wahlberg-wahlberg.gif";
+    }
+    winnerPannel.style.display = "block";
+}
+
+function resetGame() {
+    roundResult.innerHTML = "";
+    playerScore = 0;
+    pScoreboard.innerHTML = playerScore;
+    computerScore = 0;
+    cScoreboard.innerHTML = computerScore;
+    userChoiceSpan.innerHTML = "";
+    computerChoiceSpan.innerHTML = "";
+    winnerPannel.style.display = "none";
 }
